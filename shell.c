@@ -1,44 +1,4 @@
 #include "shell.h"
-char **_commandLine(char *line)
-{
-	int j = 0, i = 0;
-	char *tok, *tmp, **command;
-
-	tok = strtok(line, "\n");
-	tmp = tok;
-	while (tmp)
-		i++, tmp = strtok(NULL, " ");
-	command = (char **)malloc(i + 2);
-	if (!command)
-		return (NULL);
-	tok = strtok(tok, " ");
-	while (j < i + 2 && tok)
-	{
-		command[j] = malloc(strlen(tok) + 1);
-		if (command[j] == NULL)
-		{
-			while (--j >= 0)
-				free(command[j]);
-			free(command);
-			return (NULL);
-		}
-		command[j] = tok;
-		tok = strtok(NULL, " ");
-		j++;
-	}
-	command[j] = NULL;
-	return (command);
-}
-void _free(char **mal)
-{
-	int i, size = 0;
-
-	while(mal[size])
-		size++;
-	for (i = 0; i < size; i++)
-		free(mal[i] = NULL);
-	free(mal);
-}
 int main(__attribute__((unused))int argc, char **argv, char **env)
 {
 	pid_t PID;
