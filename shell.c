@@ -14,21 +14,19 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 		if (lineFlag == -1)
 			exit(1);
 		command = _commandLine(line);
-		if (access(command[0], F_OK) == 0 && command)
+		if (!command[0]);
+		else if (access(command[0], F_OK) == 0)
 		{
 			PID = fork();
-			if (PID < 0)
+			if (PID == 0 && execve(command[0], command, env) == -1)
+				perror(argv[0]);
+			else if (PID < 0)
 				return (0);
-			if (PID != 0)
+			else if (PID > 0)
 			{
 				waitpid(PID, &stat, 0);
 				if (!WIFEXITED(stat))
 					return (0);
-			}
-			else
-			{
-				if (execve(command[0], command, env) == -1)
-					perror(argv[0]);
 			}
 		}
 		else
