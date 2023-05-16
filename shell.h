@@ -6,4 +6,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+
+char **_commandLine(char *line);
+void _free(char **mal);
 #endif
