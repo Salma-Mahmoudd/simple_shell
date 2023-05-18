@@ -1,11 +1,9 @@
 #include "shell.h"
 void _free(char **mal)
 {
-	int i, size = 0;
+	int i;
 
-	while(mal[size])
-		size++;
-	for (i = 0; i < size; i++)
+	for (i = 0; mal[i]; i++)
 		free(mal[i] = NULL);
 	free(mal);
 }

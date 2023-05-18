@@ -1,18 +1,18 @@
 #include "shell.h"
 char **_commandLine(char *line)
 {
-	int j = 0, i = 0;
+	int j = 0, i = 1;
 	char *tok, *tmp, **command;
 
 	tok = strtok(line, "\n");
-	tmp = tok;
+	tmp = strtok(NULL, " ");
 	while (tmp)
 		i++, tmp = strtok(NULL, " ");
-	command = (char **)malloc(i + 2);
+	command = (char **)malloc(sizeof(char *) * (i + 1));
 	if (!command)
 		return (NULL);
 	tok = strtok(tok, " ");
-	while (j < i + 2 && tok)
+	while (tok)
 	{
 		command[j] = malloc(strlen(tok) + 1);
 		if (command[j] == NULL)
