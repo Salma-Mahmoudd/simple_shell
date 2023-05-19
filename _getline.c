@@ -2,7 +2,7 @@
 ssize_t _getline(char **line, size_t *len, FILE *stream)
 {
 	static char *buff;
-	ssize_t i = 0, size = 1; 
+	ssize_t i = 0, size = 1, check;
 
 	if (!line || !len)
 		return (-1);
@@ -11,8 +11,10 @@ ssize_t _getline(char **line, size_t *len, FILE *stream)
 	if (!buff)
 		return (-1);
 
-	while (read(fileno(stream), buff + i, 1) > 0 && buff[i] != '\n')
+	while ((check = read(fileno(stream), buff + i, 1)) > 0 && buff[i] != '\n')
 	{
+		if (check == -1)
+			return (-1);
 		i++;
 		if (i > size)
 		{
