@@ -3,13 +3,14 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 {
 	pid_t PID;
 	int stat;
-	char *line, **command;
+	char *line;
+	static char **command;
 	size_t len = 0;
 
 	do {
 		if (isatty(STDIN_FILENO))
 			write(1, "#cisfun$ ", 9);
-		if (getline(&line, &len, stdin) == -1)
+		if (_getline(&line, &len, stdin) == -1)
 			exit(1);
 		command = _commandLine(line);
 		if (!command[0])

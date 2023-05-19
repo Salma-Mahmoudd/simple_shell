@@ -12,6 +12,7 @@ extern char **environ;
 char **_commandLine(char *line);
 void _PATH(char **command);
 /*char **_connect(char *path, char **command);*/
+ssize_t _getline(char **line, size_t *len, FILE *stream);
 void _free(char **mal);
 void _env(void);
 #endif
