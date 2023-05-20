@@ -14,13 +14,18 @@ ssize_t _getline(char **line, size_t *len, FILE *stream)
 
 	while (buff[i - 1] != '\n' && (check = read(fileno(stream), buff + i, 1)) > 0)
 	{
-		i++;
-		if (i > size - 1)
+		if (buff[i] == '#')
+		{
+			buff[i++] = '\n';
+			continue;
+		}
+		else if (i > size - 1)
 		{
 			buff = realloc(buff, i + 1);
 			if (!buff)
 				return (-1);
 		}
+		i++;
 	}
 	if (!buff || check <= 0)
 		return (-1);

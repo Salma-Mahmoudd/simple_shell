@@ -6,8 +6,8 @@ void _env(void)
 
 	while (env[i])
 	{
-		write(1, env[i], strlen(*env));
-		write(1, "\n", 1);
+		write(STDOUT_FILENO, env[i], strlen(env[i]));
+		write(STDOUT_FILENO, "\n", 1);
 		i++;
 	}
 }
