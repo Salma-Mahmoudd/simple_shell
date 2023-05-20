@@ -4,14 +4,15 @@ char **_commandLine(char *line)
 	int j = 0, i = 1;
 	char *tok, *tmp, **command;
 
-	tok = strtok(line, "\n");
-	tmp = strtok(NULL, " ");
+	tok = _token(line, "\n");
+			printf("line %s\n", tok);
+	tmp = _token(NULL, " ");
 	while (tmp)
-		i++, tmp = strtok(NULL, " ");
+		i++, tmp = _token(NULL, " ");
 	command = (char **)malloc(sizeof(char *) * (i + 1));
 	if (!command)
 		return (NULL);
-	tok = strtok(tok, " ");
+	tok = _token(tok, " ");
 	while (tok)
 	{
 		command[j] = malloc(strlen(tok) + 1);
@@ -23,7 +24,7 @@ char **_commandLine(char *line)
 			return (NULL);
 		}
 		command[j] = tok;
-		tok = strtok(NULL, " ");
+		tok = _token(NULL, " ");
 		j++;
 	}
 	command[j] = NULL;
