@@ -11,11 +11,6 @@ void _PATH(char **command)
 			exit(0);
 		exit(atoi(command[1]));
 	}
-	if (!strcmp(command[0], "env"))
-	{
-		_env();
-		return;
-	}
 	tmp = command[0];
 	path = getenv("PATH");
 	path = strdup(path);

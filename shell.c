@@ -15,6 +15,11 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 		command = _commandLine(line);
 		if (!command[0])
 			continue;
+		else if (!strcmp(command[0], "env"))
+		{
+			_env();
+			continue;
+		}
 		else
 			_PATH(command);
 		if (access(command[0], X_OK) == 0)
