@@ -5,7 +5,7 @@ char *_token(char *str, char *start)
 	char *endtoken;
 	char *ptr;
 
-	while (*start != '\0' && (*start == ',' || *start == ' '))
+	while (*start != '\0' && (*start == ',' || *start == ' ' || *start == '\t'))
 		start++;
 	if (str == NULL)
 		return (NULL);

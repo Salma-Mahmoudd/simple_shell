@@ -23,11 +23,10 @@ void _PATH(char **command)
 		strcat(fullPath, tmp);
 		if (access(fullPath, X_OK) == 0)
 		{
-			printf("%s %ld\n",fullPath, strlen(fullPath));
-			command[0] = realloc(command[0], strlen(fullPath) + 1);
-			printf("%s\n",fullPath);
-			strcpy(command[0], fullPath);
-			printf("%s\n",command[0]);
+			command[0] = (char *)malloc(sizeof(fullPath));
+			if (!(command[0]))
+					return;
+			command[0] = fullPath;
 			free(path);
 			return;
 		}
