@@ -24,8 +24,8 @@ void _PATH(char **command)
 		if (access(fullPath, X_OK) == 0)
 		{
 			command[0] = (char *)malloc(sizeof(fullPath));
-			if (!(command[0]))
-					return;
+			if (!command[0])
+				return;
 			command[0] = fullPath;
 			free(path);
 			return;

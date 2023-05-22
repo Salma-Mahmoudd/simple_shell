@@ -1,24 +1,26 @@
 #include "shell.h"
-char *_token(char *str, char *start)
+char *_token(char *str, const char *start)
 {
 	static char *end;
-	char *endtoken;
-	char *ptr;
+	char *ptr = NULL;
 
-	while (*start != '\0' && (*start == ',' || *start == ' ' || *start == '\t'))
-		start++;
-	if (str == NULL)
-		return (NULL);
-	end = str;
+	while ((*start != '\0') && (*start == ',' || *start == ' '))
+		break;
+	if (str != NULL)
+		end = str;
 	if (end == NULL || *end == '\0')
 		return (NULL);
-	endtoken = end;
-	while (*endtoken != '\0' && *endtoken != *start &&
-		       *endtoken != ',' && *endtoken != ' ')
-		endtoken++;
-	if (*endtoken == *start)
-		*endtoken++ = '\0';
 	ptr = end;
-	end = endtoken;
+	while (*end != '\0')
+	{
+		if (*end == *start)
+		{
+			*end++ = '\0';
+			break;
+		}
+		end++;
+	}
+	if (*ptr == '\0')
+		return (_token(NULL, start));
 	return (ptr);
 }

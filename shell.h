@@ -14,5 +14,5 @@ void _PATH(char **command);
 ssize_t _getline(char **line, size_t *len, FILE *stream);
 void _free(char **mal);
 void _env(void);
-char *_token(char *str, char *start);
+char *_token(char *str, const char *start);
 #endif
