@@ -20,7 +20,6 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 		if (getline(&line, &len, stdin) == -1)
 			exit(0);
 		command = _commandLine(line);
-		free(line);
 		if (!command[0])
 			continue;
 		else if (!strcmp(command[0], "env"))
@@ -39,13 +38,14 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 				perror("fork failed"), exit(1);
 			else if (PID > 0)
 			{
-				/*if (*/waitpid(PID, &stat, 0);/* == -1 || !WIFEXITED(stat))
-					perror("waitpid failed"), exit(1);*/
+				if (waitpid(PID, &stat, 0) == -1 || !WIFEXITED(stat))
+					perror("waitpid failed"), exit(0);
 			}
 		}
 		else
 			perror(argv[0]);
 		_free(command);
 	} while (isatty(STDIN_FILENO));
+	free(line);
 	return (0);
 }
