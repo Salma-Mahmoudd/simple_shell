@@ -19,7 +19,7 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 		if (isatty(STDIN_FILENO))
 			write(1, "#cisfun$ ", 9);
 		if (getline(&line, &len, stdin) == -1)
-			exit(0);
+			free(line), exit(0);
 		command = _commandLine(line);
 		if (!command[0])
 			continue;
@@ -47,6 +47,5 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 			perror(argv[0]);
 		_free(command);
 	}
-	free(line);
 	return (0);
 }
