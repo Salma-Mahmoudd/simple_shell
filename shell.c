@@ -1,4 +1,32 @@
 #include "shell.h"
+void _check(char **command, char *line)
+{
+	int stat;
+
+	/*if (!command[0])
+	{
+		_free(command);
+	}
+	else if (!strcmp(command[0], "env"))
+	{
+		_env();
+		continue;
+	}*/
+	if (!strcmp(command[0], "exit"))
+	{
+		free(line);
+		if (!command[1])
+		{
+			_free(command);
+		       	exit(0);
+		}
+		stat = atoi(command[1]);
+		_free(command);
+		exit(stat);
+	}
+	else
+		_PATH(command);
+}
 /**
  * main - simple shell
  * @argc: no. arguments
@@ -32,7 +60,7 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 			continue;
 		}
 		else
-			_PATH(command);
+			_check(command, line);
 		if (access(command[0], X_OK) == 0)
 		{
 			PID = fork();

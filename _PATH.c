@@ -6,12 +6,12 @@
  */
 void _PATH(char **command)
 {
-	int stat;
+	/*int stat;*/
 	char *tmp, *fullPath, *path, *pathTok;
 
 	if (access(command[0], X_OK) == 0)
 		return;
-	if (!strcmp(command[0], "exit"))
+	/*if (!strcmp(command[0], "exit"))
 	{
 		if (!command[1])
 		{
@@ -21,7 +21,7 @@ void _PATH(char **command)
 		stat = atoi(command[1]);
 		_free(command);
 		exit(stat);
-	}
+	}*/
 	tmp = command[0];
 	path = getenv("PATH");
 	path = strdup(path);
