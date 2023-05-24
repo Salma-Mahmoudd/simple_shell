@@ -22,7 +22,10 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 			free(line), exit(0);
 		command = _commandLine(line);
 		if (!command[0])
+		{
+			_free(command);
 			continue;
+		}
 		else if (!strcmp(command[0], "env"))
 		{
 			_env();
@@ -38,10 +41,7 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 			else if (PID < 0)
 				perror("fork failed"), exit(1);
 			else if (PID > 0)
-			{
-				if (waitpid(PID, &stat, 0) == -1 || !WIFEXITED(stat))
-					perror("waitpid failed"), exit(0);
-			}
+				waitpid(PID, &stat, 0);
 		}
 		else
 			perror(argv[0]);
