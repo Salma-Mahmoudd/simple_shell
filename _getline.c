@@ -1,4 +1,12 @@
 #include "shell.h"
+/**
+ * _getline - function work like getline
+ * @line: character pointer
+ * @len: size pointer
+ * @stream: file pointer
+ *
+ * Return: number of size
+ */
 ssize_t _getline(char **line, size_t *len, FILE *stream)
 {
 	static char *buff;

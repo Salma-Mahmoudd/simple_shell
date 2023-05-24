@@ -1,4 +1,12 @@
 #include "shell.h"
+/**
+ * _token - function work like strtok
+ * @str: pointer
+ * @start: constant char pointer
+ *
+ * Return: pointer
+ */
+
 char *_token(char *str, const char *start)
 {
 	static char *end;
