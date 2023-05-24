@@ -10,7 +10,7 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 {
 	pid_t PID;
 	int stat;
-	char *line;
+	char *line = NULL;
 	static char **command;
 	size_t len = 0;
 
