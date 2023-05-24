@@ -14,7 +14,8 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 	static char **command;
 	size_t len = 0;
 
-	do {
+	while (1)
+       	{
 		if (isatty(STDIN_FILENO))
 			write(1, "#cisfun$ ", 9);
 		if (getline(&line, &len, stdin) == -1)
@@ -45,7 +46,7 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 		else
 			perror(argv[0]);
 		_free(command);
-	} while (isatty(STDIN_FILENO));
+	}
 	free(line);
 	return (0);
 }
