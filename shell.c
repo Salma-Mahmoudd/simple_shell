@@ -18,8 +18,9 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 		if (isatty(STDIN_FILENO))
 			write(1, "#cisfun$ ", 9);
 		if (getline(&line, &len, stdin) == -1)
-			exit(1);
+			exit(0);
 		command = _commandLine(line);
+		free(line);
 		if (!command[0])
 			continue;
 		else if (!strcmp(command[0], "env"))
@@ -38,13 +39,13 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 				perror("fork failed"), exit(1);
 			else if (PID > 0)
 			{
-				if (waitpid(PID, &stat, 0) == -1 || !WIFEXITED(stat))
-					perror("waitpid failed"), exit(1);
+				/*if (*/waitpid(PID, &stat, 0);/* == -1 || !WIFEXITED(stat))
+					perror("waitpid failed"), exit(1);*/
 			}
 		}
 		else
 			perror(argv[0]);
-		free(line = NULL), _free(command);
+		_free(command);
 	} while (isatty(STDIN_FILENO));
-	return (1);
+	return (0);
 }

@@ -9,6 +9,7 @@ void _free(char **mal)
 	int i;
 
 	for (i = 0; mal[i]; i++)
-		free(mal[i] = NULL);
-	free(mal);
+		free(mal[i]);
+	if (mal)
+		free(mal);
 }

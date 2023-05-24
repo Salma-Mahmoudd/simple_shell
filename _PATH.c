@@ -19,6 +19,7 @@ void _PATH(char **command)
 	tmp = command[0];
 	path = getenv("PATH");
 	path = strdup(path);
+	printf("jjjjjjjjjjjjj %s\n", path);
 	pathTok = strtok(path, ":");
 	while (pathTok)
 	{
@@ -28,11 +29,13 @@ void _PATH(char **command)
 		strcat(fullPath, tmp);
 		if (access(fullPath, X_OK) == 0)
 		{
-			command[0] = (char *)malloc(sizeof(fullPath));
+			command[0] = (char *)realloc(command[0], sizeof(fullPath));
 			if (!command[0])
 				return;
-			command[0] = fullPath;
+			strcpy(command[0], fullPath);
+			free(fullPath);
 			free(path);
+			printf("jjjjjjjjjjjjj %s\n", command[0]);
 			return;
 		}
 		else

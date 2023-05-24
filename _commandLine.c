@@ -27,7 +27,7 @@ char **_commandLine(char *line)
 			free(command);
 			return (NULL);
 		}
-		command[j] = tok;
+		strcpy(command[j], tok);
 		tok = strtok(NULL, " ");
 		j++;
 	}
