@@ -1,4 +1,8 @@
 #include "shell.h"
+/**
+ * _env - environ variable
+ * Return: Nothing
+ */
 void _env(void)
 {
 	char **env = environ;

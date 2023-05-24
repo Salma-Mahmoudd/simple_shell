@@ -1,4 +1,9 @@
 #include "shell.h"
+/**
+ * _free - to free 2d array of malloc
+ * @mal: the string
+ * Return: Nothing
+ */
 void _free(char **mal)
 {
 	int i;

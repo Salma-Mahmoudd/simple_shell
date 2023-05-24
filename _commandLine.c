@@ -1,17 +1,22 @@
 #include "shell.h"
+/**
+ * _commandLine - to edit the command line
+ * @line: token from user
+ * Return: string of line
+ */
 char **_commandLine(char *line)
 {
 	int j = 0, i = 1;
 	char *tok, *tmp, **command;
 
-	tok = _token(line, "\n");
-	tmp = _token(NULL, " ");
+	tok = strtok(line, "\n");
+	tmp = strtok(NULL, " ");
 	while (tmp)
-		i++, tmp = _token(NULL, " ");
+		i++, tmp = strtok(NULL, " ");
 	command = (char **)malloc(sizeof(char *) * (i + 1));
 	if (!command)
 		return (NULL);
-	tok = _token(tok, " ");
+	tok = strtok(tok, " ");
 	while (tok)
 	{
 		command[j] = malloc(strlen(tok) + 1);
@@ -23,7 +28,7 @@ char **_commandLine(char *line)
 			return (NULL);
 		}
 		command[j] = tok;
-		tok = _token(NULL, " ");
+		tok = strtok(NULL, " ");
 		j++;
 	}
 	command[j] = NULL;

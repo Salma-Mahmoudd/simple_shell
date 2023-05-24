@@ -1,4 +1,9 @@
 #include "shell.h"
+/**
+ * _PATH - to handle PATH environment variable
+ * @command: line command to execute
+ * Return: Nothing
+ */
 void _PATH(char **command)
 {
 	char *tmp, *fullPath, *path, *pathTok;

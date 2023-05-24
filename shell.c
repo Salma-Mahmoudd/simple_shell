@@ -1,4 +1,11 @@
 #include "shell.h"
+/**
+ * main - simple shell
+ * @argc: no. arguments
+ * @argv: pointer to args
+ * @env: environ
+ * Return: integer
+ */
 int main(__attribute__((unused))int argc, char **argv, char **env)
 {
 	pid_t PID;
@@ -10,7 +17,7 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 	do {
 		if (isatty(STDIN_FILENO))
 			write(1, "#cisfun$ ", 9);
-		if (_getline(&line, &len, stdin) == -1)
+		if (getline(&line, &len, stdin) == -1)
 			exit(1);
 		command = _commandLine(line);
 		if (!command[0])
