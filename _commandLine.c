@@ -13,7 +13,7 @@ char **_commandLine(char *line)
 	tmp = strtok(NULL, " ");
 	while (tmp)
 		i++, tmp = strtok(NULL, " ");
-	command = (char **)malloc(sizeof(char *) * (i + 1));
+	command = malloc((i + 1) * sizeof(char *));
 	if (!command)
 		return (NULL);
 	tok = strtok(tok, " ");
@@ -28,6 +28,7 @@ char **_commandLine(char *line)
 			return (NULL);
 		}
 		strcpy(command[j], tok);
+		/**printf("%s %d\n", command[j], j);*/
 		tok = strtok(NULL, " ");
 		j++;
 	}

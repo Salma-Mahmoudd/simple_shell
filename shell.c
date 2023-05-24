@@ -1,24 +1,20 @@
 #include "shell.h"
+/**
+ * _check - check exit
+ * @command: pointer
+ * @line: pointer
+ */
 void _check(char **command, char *line)
 {
 	int stat;
 
-	/*if (!command[0])
-	{
-		_free(command);
-	}
-	else if (!strcmp(command[0], "env"))
-	{
-		_env();
-		continue;
-	}*/
 	if (!strcmp(command[0], "exit"))
 	{
 		free(line);
 		if (!command[1])
 		{
 			_free(command);
-		       	exit(0);
+			exit(0);
 		}
 		stat = atoi(command[1]);
 		_free(command);
