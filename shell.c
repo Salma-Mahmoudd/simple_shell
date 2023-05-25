@@ -3,6 +3,7 @@
  * _check - check exit
  * @command: pointer
  * @line: pointer
+ * @stat: integer
  */
 void _check(char **command, char *line, int stat)
 {
@@ -66,7 +67,6 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 				perror("fork failed"), exit(1);
 			else if (PID > 0)
 				waitpid(PID, &stat, 0);
-				
 		}
 		else
 			perror(argv[0]);

@@ -6,13 +6,18 @@
  */
 char **_commandLine(char *line)
 {
-	int j = 0, i = 1;
+	int j = 0, i;
 	char *tok, *tmp, **command;
 
 	tok = strtok(line, "\n");
 	tmp = strtok(NULL, " ");
 	while (tmp)
 		i++, tmp = strtok(NULL, " ");
+	for (i = 1; line[i]; i++)
+	{
+		if (line[i] == ' ' && line[i - 1] != ' ')
+			i++;
+	}
 	command = malloc((i + 1) * sizeof(char *));
 	if (!command)
 		return (NULL);
@@ -22,8 +27,10 @@ char **_commandLine(char *line)
 		command[j] = malloc(strlen(tok) + 1);
 		if (command[j] == NULL)
 		{
-			while (--j >= 0)
+			/**while (--j >= 0)*/
+			for (i = 0; i < j; i++)
 				free(command[j]);
+			free(command[j]);
 			free(command);
 			return (NULL);
 		}
