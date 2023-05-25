@@ -27,7 +27,6 @@ char **_commandLine(char *line)
 		command[j] = malloc(strlen(tok) + 1);
 		if (command[j] == NULL)
 		{
-			/**while (--j >= 0)*/
 			for (i = 0; i < j; i++)
 				free(command[j]);
 			free(command[j]);
