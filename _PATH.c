@@ -26,7 +26,6 @@ void _PATH(char **command)
 			if (!command[0])
 				return;
 			strcpy(command[0], fullPath);
-			printf("%s\n", command[0]);
 			free(fullPath);
 			free(path);
 			return;
