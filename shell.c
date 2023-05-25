@@ -35,8 +35,8 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 {
 	pid_t PID;
 	int stat = 0;
-	char *line = NULL;
-	static char **command;
+/*	char *line = NULL;*/
+	static char **command, *line = NULL;
 	size_t len = 0;
 
 	while (1)
@@ -54,6 +54,7 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 		else if (!strcmp(command[0], "env"))
 		{
 			_env();
+			_free(command);
 			continue;
 		}
 		else
