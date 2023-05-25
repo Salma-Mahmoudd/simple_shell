@@ -34,8 +34,7 @@ char **_commandLine(char *line)
 			free(command);
 			return (NULL);
 		}
-		strcpy(command[j], tok);
-		/**printf("%s %d\n", command[j], j);*/
+		strcpy(command[j], tok)
 		tok = strtok(NULL, " ");
 		j++;
 	}
