@@ -4,9 +4,9 @@
  * @command: pointer
  * @line: pointer
  */
-void _check(char **command, char *line)
+void _check(char **command, char *line, int stat)
 {
-	int stat;
+	int s;
 
 	if (!strcmp(command[0], "exit"))
 	{
@@ -14,11 +14,11 @@ void _check(char **command, char *line)
 		if (!command[1])
 		{
 			_free(command);
-			exit(0);
+			exit(WEXITSTATUS(stat));
 		}
-		stat = atoi(command[1]);
+		s = atoi(command[1]);
 		_free(command);
-		exit(stat);
+		exit(s);
 	}
 	else
 		_PATH(command);
@@ -33,7 +33,7 @@ void _check(char **command, char *line)
 int main(__attribute__((unused))int argc, char **argv, char **env)
 {
 	pid_t PID;
-	int stat;
+	int stat = 0;
 	char *line = NULL;
 	static char **command;
 	size_t len = 0;
@@ -56,7 +56,7 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 			continue;
 		}
 		else
-			_check(command, line);
+			_check(command, line, stat);
 		if (access(command[0], X_OK) == 0)
 		{
 			PID = fork();
@@ -66,6 +66,7 @@ int main(__attribute__((unused))int argc, char **argv, char **env)
 				perror("fork failed"), exit(1);
 			else if (PID > 0)
 				waitpid(PID, &stat, 0);
+				
 		}
 		else
 			perror(argv[0]);
